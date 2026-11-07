@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "SheetGrab",
+  "version": "0.1.0",
+  "description": "Clip job postings, internships and papers from any page into your Google Sheet.",
+  "homepage_url": "https://ArozHada.github.io/sheetgrab/",
+  "minimum_chrome_version": "116",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnL2laAQeLaJbcInVkeizmVhFgCn0gtsQflgCv2W1z0dydFMiNqaixSUcEIfd+GCoVILGwUA/3Qn+pd/vN/PST4Mzc7bRLk9IpUndf9asoSobVcLvUkbRmFU4XeuOMYLzy8umIZQkDMAavSLvZ0aH0+Zu0cbxtrJ9YJZO0pYNq7SoLnLef67ttaVLG/WweOtRQN4OyGK7RkwZk89Z1SJgh7Opm5ChIc393WT2r59Byt2rsImY61XXtgTXcb7/wQ7r0gO7xW39ersW+I3Bv6Mf3Bah2I9Uw77ZNYB3hg+Zwa/6z3iEMvN5ZcCu3HrMnYy+zxmAmtJaGTOm+sK1+JHlPQIDAQAB",
+  "permissions": ["identity", "storage", "activeTab", "scripting"],
+  "host_permissions": ["https://sheets.googleapis.com/*"],
+  "oauth2": {
+    "client_id": "357545592219-a5pemn2n4c1eaj85s6cevf0bvnpnkku3.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/spreadsheets"]
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "SheetGrab: save this page to your Sheet",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

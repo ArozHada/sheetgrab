@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SheetGrab</title>
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <img src="../icons/icon32.png" width="20" height="20" alt="" />
+      <div class="titles">
+        <strong>SheetGrab</strong>
+        <span id="target" class="muted"></span>
+      </div>
+      <button id="settings" class="icon-btn" type="button" title="Settings" aria-label="Open settings">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3h-4l-.4 2.7a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1L11 21h4l.4-2.7a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5ZM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"
+            transform="translate(-1 0)"
+          />
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <p id="status" class="msg"></p>
+
+      <section id="setup" class="empty" hidden>
+        <h2>Connect a Sheet first</h2>
+        <p class="muted">Connect your Google account, paste your Sheet URL and map its columns. It takes about a minute.</p>
+        <button id="openSetup" class="primary" type="button">Set up SheetGrab</button>
+      </section>
+
+      <p id="loading" class="muted loading">Reading this page…</p>
+
+      <form id="form" hidden>
+        <div id="fields" class="fields"></div>
+        <div class="actions">
+          <button id="cancel" type="button">Cancel</button>
+          <button id="save" type="submit" class="primary">Save to Sheet</button>
+        </div>
+      </form>
+
+      <section id="success" class="empty" hidden>
+        <div class="check" aria-hidden="true">✓</div>
+        <h2 id="successText">Added</h2>
+        <p class="muted" id="successSub"></p>
+        <div class="actions center">
+          <button id="openSheet" type="button">Open Sheet</button>
+          <button id="close" type="button" class="primary">Done</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

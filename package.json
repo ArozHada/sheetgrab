@@ -1,0 +1,12 @@
+{
+  "name": "sheetgrab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension: clip job postings and papers into a Google Sheet.",
+  "scripts": {
+    "test": "node --test",
+    "package": "node scripts/package.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "url": "https://arxiv.org/abs/2511.01234",
+  "title": "[2511.01234] Sparse Attention for Long Documents",
+  "selection": "",
+  "meta": {
+    "citation_title": ["Sparse Attention for Long Documents"],
+    "citation_author": ["Smith, John", "Doe, Jane"],
+    "citation_date": ["2025/11/03"],
+    "citation_abstract": ["We propose a sparse attention mechanism that scales linearly with document length."],
+    "og:site_name": ["arXiv.org"]
+  },
+  "jsonld": [],
+  "text": "Computer Science > Computation and Language\nSparse Attention for Long Documents\nJohn Smith, Jane Doe\nAbstract: We propose a sparse attention mechanism that scales linearly with document length.\nSubmitted 3 Nov 2025"
+}

@@ -1,0 +1,22 @@
+{
+  "url": "https://boards.greenhouse.io/globex/jobs/4455",
+  "title": "Job Application for Data Analyst at Globex",
+  "selection": "",
+  "meta": { "og:site_name": ["Greenhouse"] },
+  "jsonld": [{
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "name": "Globex Corporation" },
+      {
+        "@type": "JobPosting",
+        "title": "Data Analyst",
+        "hiringOrganization": { "@type": "Organization", "name": "Globex Corporation" },
+        "datePosted": "2026-02-01",
+        "validThrough": "2026-04-30T23:59:00-05:00",
+        "jobLocation": { "@type": "Place", "address": { "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US" } },
+        "baseSalary": { "@type": "MonetaryAmount", "currency": "USD", "value": { "minValue": 85000, "maxValue": 105000, "unitText": "YEAR" } }
+      }
+    ]
+  }],
+  "text": "Data Analyst\nGlobex\nAustin, TX\nApply for this job\nDeadline\nApril 1st, 2026\nHiring Manager\nDr. Maria Lopez\nRequisition ID: R-20931\nThe role will be part of our analytics team."
+}

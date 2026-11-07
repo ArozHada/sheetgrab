@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SheetGrab Settings</title>
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="page-head">
+        <img src="../icons/icon48.png" width="32" height="32" alt="" />
+        <div>
+          <h1>SheetGrab settings</h1>
+          <p class="muted">Clip job postings, internships and papers into your own Google Sheet. Your data goes straight from your browser to Google.</p>
+        </div>
+      </header>
+
+      <section class="card">
+        <h2><span class="step">1</span> Google account</h2>
+        <div class="row">
+          <p id="authText" class="muted grow">Checking connection…</p>
+          <button id="connect" class="primary" type="button" hidden>Connect Google Account</button>
+          <button id="disconnect" type="button" hidden>Disconnect</button>
+        </div>
+        <p id="authMsg" class="msg"></p>
+      </section>
+
+      <section class="card">
+        <h2><span class="step">2</span> Your Sheet</h2>
+        <label class="stack">
+          <span>Google Sheet URL</span>
+          <div class="row">
+            <input id="sheetUrl" type="url" placeholder="https://docs.google.com/spreadsheets/d/…/edit" spellcheck="false" />
+            <button id="load" type="button">Load tabs</button>
+          </div>
+        </label>
+        <label class="stack">
+          <span>Tab</span>
+          <select id="tab" disabled>
+            <option>Load your Sheet first</option>
+          </select>
+        </label>
+        <p id="sheetMsg" class="msg"></p>
+      </section>
+
+      <section class="card">
+        <div class="row">
+          <h2 class="grow"><span class="step">3</span> Map columns to extraction rules</h2>
+          <button id="refresh" type="button" disabled>Refresh headers</button>
+        </div>
+        <p class="muted">
+          SheetGrab reads row 1 of your tab as column headers. For each column, pick what it should look for on the page.
+          Keyword rules look for the label (e.g. “Apply by:”) and take the value right after it, or on the next line.
+        </p>
+        <fieldset class="wanted">
+          <legend>Make sure my Sheet has these columns</legend>
+          <div id="wanted" class="chips"></div>
+          <p class="muted small">
+            Missing ones are added to row 1 and linked to the right rule when you click Save settings. If a column
+            disappears later, SheetGrab re-creates it the next time it has a value for it. Columns are never deleted.
+          </p>
+        </fieldset>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-col">Column</th>
+                <th class="col-rule">Rule</th>
+                <th>Keywords / details</th>
+              </tr>
+            </thead>
+            <tbody id="rows">
+              <tr><td colspan="3" class="muted empty-row">Load a Sheet and pick a tab to see its columns.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="savebar">
+        <p id="saveMsg" class="msg grow"></p>
+        <button id="save" class="primary" type="button">Save settings</button>
+      </div>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

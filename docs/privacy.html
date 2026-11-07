@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SheetGrab Privacy Policy</title>
+    <meta name="description" content="How the SheetGrab Chrome extension handles your data." />
+    <link rel="icon" href="icon128.png" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb"><a href="./">← SheetGrab</a></p>
+      <h1>Privacy Policy</h1>
+      <p class="muted">Last updated: November 7, 2026</p>
+
+      <p>
+        SheetGrab is a Chrome extension that copies details from the web page you're viewing (for example a job
+        title, company, deadline and link) into a Google Sheet that you choose. This policy explains what data
+        SheetGrab touches and where it goes. In short: <strong>your data goes only from your browser to your own
+        Google Sheet. SheetGrab has no servers and collects nothing.</strong>
+      </p>
+
+      <h2>What SheetGrab reads</h2>
+      <ul>
+        <li>
+          <strong>The current page, only when you click the SheetGrab icon.</strong> SheetGrab reads that tab's text,
+          title, URL and standard page metadata so it can pre-fill the form. It never reads pages in the background or
+          tracks your browsing.
+        </li>
+        <li>
+          <strong>Your chosen Google Sheet.</strong> SheetGrab reads the tab names and the header row (row 1) of the
+          spreadsheet whose URL you enter, so it can map columns.
+        </li>
+      </ul>
+
+      <h2>What SheetGrab writes</h2>
+      <ul>
+        <li>
+          When you click <em>Save to Sheet</em>, SheetGrab appends one row, containing the values shown in the form
+          (which you can edit first), to the spreadsheet tab you selected.
+        </li>
+        <li>
+          If your tab is missing a column you asked for in Settings, SheetGrab adds that header to row 1. It never
+          deletes or overwrites your existing data.
+        </li>
+      </ul>
+
+      <h2>Where your data goes</h2>
+      <ul>
+        <li>
+          Page details are sent <strong>only</strong> to the Google Sheets API (<code>sheets.googleapis.com</code>),
+          directly from your browser, and only to write to your own spreadsheet.
+        </li>
+        <li>SheetGrab has no servers of its own. The developer never receives your page content, Sheet data or account details.</li>
+        <li>SheetGrab uses no analytics, advertising, tracking or third-party services.</li>
+        <li>SheetGrab does not sell, share or transfer your data to anyone.</li>
+      </ul>
+
+      <h2>Google account access</h2>
+      <p>
+        SheetGrab asks for the Google permission <code>https://www.googleapis.com/auth/spreadsheets</code> ("See,
+        edit, create and delete your Google Sheets spreadsheets"). Google requires this permission to read headers and
+        append rows. SheetGrab only uses it on the single spreadsheet you configure, and only to do the things
+        described above. Sign-in is handled by Chrome's built-in Google sign-in. The access token is managed by
+        Chrome and is never sent anywhere except to Google's APIs.
+      </p>
+      <p>
+        SheetGrab's use and transfer of information received from Google APIs to any other app will adhere to the
+        <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+        including the Limited Use requirements.
+      </p>
+
+      <h2>What SheetGrab stores</h2>
+      <p>
+        Your settings (spreadsheet ID and name, tab name, and your column-to-rule mapping) are saved with Chrome's
+        <code>chrome.storage.sync</code>, so they follow you across browsers where you're signed in to Chrome. Page
+        content is not stored by the extension. Once a row is saved, it lives only in your Google Sheet.
+      </p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>Click <em>Disconnect</em> in SheetGrab's settings to sign out and revoke the access token.</li>
+        <li>
+          You can also remove SheetGrab's access at any time from your
+          <a href="https://myaccount.google.com/permissions">Google Account permissions</a> page.
+        </li>
+        <li>Uninstalling the extension removes its settings from Chrome.</li>
+      </ul>
+
+      <h2>Children</h2>
+      <p>SheetGrab is not directed at children under 13 and does not knowingly collect any personal information.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, the updated version will be posted on this page with a new date.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy: <a href="mailto:sheetgrab@protonmail.com">sheetgrab@protonmail.com</a></p>
+    </main>
+  </body>
+</html>
