@@ -1,40 +1,42 @@
 # SheetGrab
 
-A Chrome extension (Manifest V3) that clips job postings, internships and research papers into your own Google Sheet with one click.
+**Clip job postings, internships and research papers from any web page into your own Google Sheet, in one click.**
 
-SheetGrab doesn't scrape specific sites. It reads the page text and looks for labels like "Deadline:", "Apply by" or "Hiring Manager". It also uses standard metadata (JSON-LD `JobPosting`, `citation_*` and `og:*` tags), so it works on LinkedIn, ATS boards (Greenhouse, Lever, Workday…), company career pages and paper sites. Everything runs locally. The only network calls go to Google's Sheets API, using your own OAuth token.
+<p>
+  <a href="https://chromewebstore.google.com/detail/piomlnckefcdoihgpfaijbfmjdoglnai"><strong>Install from the Chrome Web Store</strong></a>
+  · <a href="https://arozhada.github.io/sheetgrab/">Website</a>
+  · <a href="https://arozhada.github.io/sheetgrab/privacy.html">Privacy policy</a>
+</p>
 
-## One-time setup (≈10 minutes)
+> **Status:** SheetGrab is currently in Chrome Web Store review. The store link goes live once it's approved. Until then, you can [run it from source](#run-from-source).
 
-The extension uses Chrome's built-in Google sign-in (`chrome.identity`), which needs an OAuth client ID that you own.
+![SheetGrab popup pre-filled from a job posting](docs/images/clip.png)
 
-1. **Load the extension.** Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and select this folder.
-   The extension ID should be **`piomlnckefcdoihgpfaijbfmjdoglnai`**. The `key` field in `manifest.json` (the Chrome Web Store public key) keeps it the same as the published extension.
-2. **Create a Google Cloud project** at <https://console.cloud.google.com/>.
-3. **Enable the Google Sheets API:** go to APIs & Services → Library → "Google Sheets API" → Enable.
-4. **Configure the OAuth consent screen** (APIs & Services → OAuth consent screen / Google Auth Platform):
-   - User type: **External**. Publishing status: **Testing**.
-   - Add your own Google account under **Test users**.
-   - Scope: `https://www.googleapis.com/auth/spreadsheets`.
-5. **Create the OAuth client** (Credentials → Create credentials → OAuth client ID):
-   - Application type: **Chrome Extension**.
-   - Item ID: `piomlnckefcdoihgpfaijbfmjdoglnai`.
-6. Copy the client ID into `manifest.json` → `oauth2.client_id`, replacing `YOUR_CLIENT_ID.apps.googleusercontent.com`.
-7. Click the reload icon for SheetGrab in `chrome://extensions`.
+## What it does
 
-## Using it
+Tracking applications in a spreadsheet? Open a job posting, click the SheetGrab icon, and the posting's details are already filled in: company, role, deadline, contact, location, salary, link and today's date. Check them, edit anything, and click **Save to Sheet**. A new row lands in your Google Sheet.
 
-1. The settings page opens on install. You can also right-click the icon → Options.
-   1. Click **Connect Google Account**.
-   2. Paste your Sheet URL and click **Load tabs**, then pick a tab.
-   3. Row 1 is read as headers and each column gets a rule guessed from its name. Under **Make sure my Sheet has these columns**, tick the standard fields you want. The defaults are Company, Role, Deadline, Contact, Link and Date Saved. Any that are missing get created in row 1 and linked to the right rule when you save, so an empty Sheet works too.
-   4. Rows are written by header name, so you can reorder columns freely. If a mapped column is deleted later, SheetGrab re-creates it the next time it has a value for it. "Apply By" becomes Deadline, "Company" becomes Company, "Link" becomes Page URL, and so on. Adjust the rules or keywords as needed, then click **Save settings**.
-2. On a job posting, click the SheetGrab icon. The form shows one field per column, pre-filled, with a hint saying where each value came from.
-3. Fix anything that's wrong and click **Save to Sheet**. You'll see "Added to Row N".
+- **Works on any site.** SheetGrab doesn't depend on one website's layout. It looks for labels like "Deadline:", "Apply by", "Hiring Manager" or "Reach out to", and uses standard job and article metadata. It works on LinkedIn, Greenhouse, Lever, Workday, company career pages and research paper sites.
+- **Fits your Sheet.** It reads your column headers and matches each one to the right field. It can also create any missing columns for you, and you can tweak the keywords for each column.
+- **Private by design.** The page is read only when you click the icon. Data goes straight from your browser to your own Google Sheet. There are no SheetGrab servers, analytics or tracking.
 
-Tip: select part of the page before clicking the icon, and SheetGrab searches the selection first.
+| Saved to your Sheet | Map your columns |
+| --- | --- |
+| ![Added to Row 42 confirmation](docs/images/saved.png) | ![Settings page with column mapping](docs/images/settings.png) |
 
-### Rules
+## How to use it
+
+1. **Install** SheetGrab from the [Chrome Web Store](https://chromewebstore.google.com/detail/piomlnckefcdoihgpfaijbfmjdoglnai). The settings page opens automatically. You can reopen it later by right-clicking the icon → **Options**.
+2. Click **Connect Google Account**.
+3. Paste the URL of your tracking Sheet, click **Load tabs**, and pick a tab.
+4. Check the column mapping. SheetGrab reads row 1 as headers and guesses a rule for each one: "Apply By" becomes Deadline, "Link" becomes the page URL, and so on. Under **Make sure my Sheet has these columns**, tick any standard fields you want. Missing ones are added to row 1 when you click **Save settings**, so an empty Sheet works too.
+5. On any job posting, click the SheetGrab icon, review the pre-filled fields, and click **Save to Sheet**. You'll see "Added to Row N".
+
+Tips:
+- Select part of a page before clicking the icon, and SheetGrab looks there first.
+- Rows are written by header name, so you can reorder your columns freely.
+
+### Extraction rules
 
 | Rule | Looks at (in order) |
 | --- | --- |
@@ -44,13 +46,42 @@ Tip: select part of the page before clicking the icon, and SheetGrab searches th
 | Contact person | "Hiring Manager/Recruiter/Contact/Reach out to…" → a name and/or email |
 | Location, Salary | labels → JSON-LD jobLocation / baseSalary |
 | Authors, Abstract, Published date | `citation_*` meta → JSON-LD article → labels |
-| Page title, Page URL, Date saved | page metadata / today |
+| Page title, Page URL, Date saved | page metadata / today (links have tracking parameters removed) |
 | Custom keywords | your labels, with a value type (date, person, email, text…) |
 | Custom regex | first capture group (or the whole match) in the page text |
 
-## Development
+## Privacy and permissions
+
+| Permission | Why |
+| --- | --- |
+| `activeTab`, `scripting` | Read the current page, only when you click the icon |
+| `identity` | Sign in with Chrome's built-in Google sign-in |
+| `storage` | Save your settings (Sheet, tab, column mapping) |
+| `sheets.googleapis.com` | Read your header row and append rows. This is the only server SheetGrab talks to. |
+
+SheetGrab has no broad host permissions and no servers of its own. Page values that start with `=`, `+`, `-` or `@` are saved as plain text, so a web page can't inject a spreadsheet formula. On pages Chrome doesn't let extensions read (such as `chrome://` pages or the Web Store), only the URL, title and date are filled in. Full details are in the [privacy policy](https://arozhada.github.io/sheetgrab/privacy.html).
+
+Questions or problems? [Open an issue](https://github.com/ArozHada/sheetgrab/issues) or email sheetgrab@protonmail.com.
+
+---
+
+## Run from source
 
 No build step and no dependencies. These are plain ES modules that Chrome loads directly.
+
+1. Clone this repo.
+2. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and select the repo folder.
+
+The `key` in `manifest.json` gives the unpacked copy the same ID as the store version (`piomlnckefcdoihgpfaijbfmjdoglnai`), so it uses the published OAuth client.
+
+**Forking?** Google sign-in is tied to that ID and client. To run your own copy:
+1. Remove `key` from `manifest.json` and load the extension unpacked to get your own extension ID.
+2. Create a Google Cloud project and enable the **Google Sheets API**.
+3. Configure the OAuth consent screen: External, Testing status, add yourself as a test user, scope `https://www.googleapis.com/auth/spreadsheets`.
+4. Create an OAuth client of type **Chrome Extension** with your extension ID.
+5. Put that client ID in `manifest.json` → `oauth2.client_id` and reload the extension.
+
+### Project layout
 
 ```
 manifest.json
@@ -61,45 +92,21 @@ popup/        the clipper form
 options/      settings + column mapping
 tests/        node --test unit tests with page fixtures
 scripts/      package.mjs (store zip), screenshots.mjs (store images)
-docs/         homepage + privacy policy to host (e.g. GitHub Pages), store-listing.md (dashboard copy)
+docs/         website + privacy policy (GitHub Pages), images, store-listing.md
 ```
 
 ```sh
-npm test              # or: node --test   (Node 20+)
+npm test              # unit tests (Node 20+)
 npm run package       # tests + dist/sheetgrab-<version>.zip for the Chrome Web Store
 npm run screenshots   # dist/store/*.png (1280×800 screenshots + 440×280 promo tile)
 ```
 
-To debug, open `chrome://extensions` and use **Inspect views: service worker** for background logs. Right-click the popup → Inspect for popup logs.
+To debug, open `chrome://extensions` and use **Inspect views: service worker** for background logs. Right-click the popup → **Inspect** for popup logs.
 
-## Publishing to the Chrome Web Store
+### Releasing an update
 
-End users don't need any Google Cloud setup. They install SheetGrab and click **Connect Google Account**. These steps are for you, once.
+1. Bump `version` in `manifest.json`.
+2. Run `npm run package`.
+3. Upload `dist/sheetgrab-<version>.zip` on the item's **Package** tab in the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
 
-1. **Developer account.** Register at the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole). It's a one-time $5 fee and needs 2-step verification.
-2. **Host `docs/`** on GitHub Pages or similar.
-   - Replace the `YOUR-…` placeholders in `docs/index.html`, `docs/privacy.html` and `docs/store-listing.md`.
-   - Set `homepage_url` in `manifest.json` to the hosted URL.
-   - Verify the domain in [Google Search Console](https://search.google.com/search-console). OAuth verification requires it.
-3. **Build and upload.** Run `npm run package`, then upload `dist/sheetgrab-<version>.zip` as a **new item**. Don't submit it yet.
-4. **Switch to the store's extension ID.** The store assigns a new ID, which you can see on the item page.
-   1. In Google Cloud → Credentials, edit your *Chrome Extension* OAuth client and set **Item ID** to the new ID.
-   2. In the dashboard → Package → **View public key**, copy the key (without the BEGIN/END lines) into the `key` field of `manifest.json`. Your unpacked dev build now has the same ID as the store version.
-   3. Reload the unpacked extension and check that **Connect Google Account** still works.
-5. **Fill in the listing.**
-   - Use the copy in [docs/store-listing.md](docs/store-listing.md), and the images from `npm run screenshots`.
-   - On the Privacy tab, paste the single purpose, the permission justifications and the privacy policy URL.
-   - Then **Submit for review**. It usually takes a few days.
-6. **OAuth verification.**
-   - Set the consent screen to **In production**, then submit for verification. Use the scope justification and demo-video script in `docs/store-listing.md`.
-   - Until it's approved, users see an "unverified app" screen and you're limited to 100 users.
-   - Verification is free. The `spreadsheets` scope is *sensitive*, not *restricted*, so you don't need a paid security assessment.
-
-**Updates:** bump `version` in `manifest.json`, run `npm run package`, and upload the new zip on the item's Package tab. The packaging script always removes `key`, so leaving the store key in your local manifest is fine.
-
-### Notes
-
-- **Permissions:** `activeTab` + `scripting` (the page is read only when you click the icon), `identity`, `storage`, and access to `sheets.googleapis.com`. No broad host permissions.
-- **Formula injection:** page-derived values that start with `=`, `+`, `-` or `@` are saved as text, so they can't become live formulas.
-- **Restricted pages:** on pages Chrome doesn't let extensions read (`chrome://` pages, the Web Store), only the URL, title and date are filled in.
-- **Publishing:** to publish on the Chrome Web Store you'd submit the consent screen for verification. The `spreadsheets` scope is "sensitive", not "restricted".
+The packaging script removes `key` from the upload (the store rejects it) and refuses to build if the tests fail or the OAuth client ID is a placeholder. Text for the store listing, privacy answers and OAuth verification is in [docs/store-listing.md](docs/store-listing.md).
