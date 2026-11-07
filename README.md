@@ -9,7 +9,7 @@ SheetGrab doesn't scrape specific sites. It reads the page text and looks for la
 The extension uses Chrome's built-in Google sign-in (`chrome.identity`), which needs an OAuth client ID that you own.
 
 1. **Load the extension.** Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and select this folder.
-   The extension ID should be **`ndhidbnfcmpikidebbifiklhhnbecohl`**. The `key` field in `manifest.json` keeps it the same on every machine.
+   The extension ID should be **`piomlnckefcdoihgpfaijbfmjdoglnai`**. The `key` field in `manifest.json` (the Chrome Web Store public key) keeps it the same as the published extension.
 2. **Create a Google Cloud project** at <https://console.cloud.google.com/>.
 3. **Enable the Google Sheets API:** go to APIs & Services → Library → "Google Sheets API" → Enable.
 4. **Configure the OAuth consent screen** (APIs & Services → OAuth consent screen / Google Auth Platform):
@@ -18,7 +18,7 @@ The extension uses Chrome's built-in Google sign-in (`chrome.identity`), which n
    - Scope: `https://www.googleapis.com/auth/spreadsheets`.
 5. **Create the OAuth client** (Credentials → Create credentials → OAuth client ID):
    - Application type: **Chrome Extension**.
-   - Item ID: `ndhidbnfcmpikidebbifiklhhnbecohl`.
+   - Item ID: `piomlnckefcdoihgpfaijbfmjdoglnai`.
 6. Copy the client ID into `manifest.json` → `oauth2.client_id`, replacing `YOUR_CLIENT_ID.apps.googleusercontent.com`.
 7. Click the reload icon for SheetGrab in `chrome://extensions`.
 

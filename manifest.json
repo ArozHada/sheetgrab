@@ -5,7 +5,7 @@
   "description": "Clip job postings, internships and papers from any page into your Google Sheet.",
   "homepage_url": "https://ArozHada.github.io/sheetgrab/",
   "minimum_chrome_version": "116",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnL2laAQeLaJbcInVkeizmVhFgCn0gtsQflgCv2W1z0dydFMiNqaixSUcEIfd+GCoVILGwUA/3Qn+pd/vN/PST4Mzc7bRLk9IpUndf9asoSobVcLvUkbRmFU4XeuOMYLzy8umIZQkDMAavSLvZ0aH0+Zu0cbxtrJ9YJZO0pYNq7SoLnLef67ttaVLG/WweOtRQN4OyGK7RkwZk89Z1SJgh7Opm5ChIc393WT2r59Byt2rsImY61XXtgTXcb7/wQ7r0gO7xW39ersW+I3Bv6Mf3Bah2I9Uw77ZNYB3hg+Zwa/6z3iEMvN5ZcCu3HrMnYy+zxmAmtJaGTOm+sK1+JHlPQIDAQAB",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt99Ngu2ECHXbkXCeotiBY9L6cXaVvbVWjoez0lZA4RWBSnhGNq6RSrqjq+yZpt8Jqy39qy/xGjToQCFjnxpEsnuDRTZJ+sdSCrDCUIh+rf7wzk4ysUoK4pRZ5LnxaeGCEbft0Lkts3JccGAggneWHqNROl3VMM9hmwkLZqWod9cRoAtQcTO1/5Enhx3ZqDexeFa1pDVj+zZOaA2CmmAQENStAS1B/VRSNTEn66oClCVAS7jO+BNU8D5FkbcIizECwUVcbhaME6PNVEn14dMt96Z/VQzfpaL/pnKLXhC9RlAE0kbWGqvEFtdqWlGkfArH3T9c6h2ZtQ2ROxTMD4Ol/QIDAQAB",
   "permissions": ["identity", "storage", "activeTab", "scripting"],
   "host_permissions": ["https://sheets.googleapis.com/*"],
   "oauth2": {
